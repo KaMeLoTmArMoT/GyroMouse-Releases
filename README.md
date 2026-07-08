@@ -24,11 +24,10 @@ Air mice are notoriously difficult to use for precise tasks (like clicking small
 ### 🌟 The "Magnetic UI" Experience
 * **Native Windows Support:** Effortlessly snaps to File Explorer tabs, Start Menu items, Taskbar icons, and Electron apps.
 * **Web Integration:** The dedicated Chrome Extension pierces through Shadow DOMs and IFrames, grabbing exact button coordinates from any website.
-* **Tactile Haptic Feedback:** Whenever the cursor snaps to an element, your phone physically vibrates with a force proportional to the "pull" magnitude.
 
 ## Key Features
 
-* 📱 **Dual Modes:** Switch seamlessly between **Pointer Mode** (absolute spatial tracking) and **Legacy Joystick** (relative tilt).
+* 📱 **Pointer Mode:** Absolute spatial tracking (Point-and-click) using the phone's gyroscope.
 * ⚡ **Zero-Latency Architecture:** Asynchronous UDP networking combined with O(N) SIMD Rust calculations ensures instantaneous cursor response.
 * ⌨️ **Safe Sync Keyboard:** Type from your phone! The PC server streams focused text fields directly to your Android device, perfectly synchronized to avoid race conditions.
 * 🔍 **Auto-Discovery:** Zero-configuration setup. The Android app automatically detects your PC server over the local Wi-Fi via mDNS/ZeroConf.
