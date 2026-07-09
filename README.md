@@ -29,7 +29,8 @@ Air mice are notoriously difficult to use for precise tasks (like clicking small
 
 * 📱 **Pointer Mode:** Absolute spatial tracking (Point-and-click) using the phone's gyroscope.
 * ⚡ **Zero-Latency Architecture:** Asynchronous UDP networking combined with O(N) SIMD Rust calculations ensures instantaneous cursor response.
-* ⌨️ **Safe Sync Keyboard:** Type from your phone! The PC server streams focused text fields directly to your Android device, perfectly synchronized to avoid race conditions.
+* ⌨️ **Safe Sync Keyboard:** Type from your phone! The PC server streams focused text fields directly to your Android device from both native Windows apps and Web browsers, instantly synchronized to avoid race conditions.
+* 🎛️ **Web Dashboard:** A clean, local web interface (`http://127.0.0.1:5000`) that lets you configure your GyroMouse settings, view magnetic snap strengths, and monitor connection statuses in real-time.
 * 🔍 **Auto-Discovery:** Zero-configuration setup. The Android app automatically detects your PC server over the local Wi-Fi via mDNS/ZeroConf.
 
 ---
