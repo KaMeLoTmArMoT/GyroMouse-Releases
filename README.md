@@ -62,10 +62,10 @@ To ensure highest stability, every published release undergoes automated verific
 
 The source code for GyroMouse is currently **private and closed-source**. This repository is maintained strictly as an official distribution channel for release assets and issue tracking.
 
-**Privacy:** GyroMouse operates entirely locally over your home Wi-Fi. It does not collect telemetry, perform user tracking, or rely on external cloud accounts. Please review the [**PRIVACY**](PRIVACY) notice for full details.
+**Privacy:** GyroMouse operates entirely locally over your home Wi-Fi. It does not collect telemetry, perform user tracking, or rely on external cloud accounts. Please review the [**PRIVACY**](PRIVACY.md) notice for full details.
 
 ## ⚠️ License
 
 The software provided in these releases is proprietary. Reverse engineering, modification, and unauthorized redistribution are strictly prohibited.
 
-Please refer to the [**LICENSE**](LICENSE) file for the full End User License Agreement (EULA).
+Please refer to the [**LICENSE**](LICENSE.md) file for the full End User License Agreement (EULA).

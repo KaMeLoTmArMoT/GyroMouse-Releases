@@ -1,0 +1,57 @@
+# Privacy Notice for GyroMouse
+
+**Last updated:** 2026-07-08
+
+This privacy notice explains the intended data-handling model for GyroMouse.
+
+## 1. Core Statement
+
+GyroMouse is intended to operate locally on the user's device.
+
+To the best of the Author's knowledge and intent, GyroMouse does not collect, sell, transmit, store, or share personal data with the Author or with third parties.
+
+The Author does not operate a backend account system, cloud profile, analytics dashboard, user-tracking service, or telemetry system for GyroMouse.
+
+## 2. No Account and No Payment Collection
+
+GyroMouse is intended to be usable without creating an account with the Author.
+
+The Author does not collect money or process payments through GyroMouse itself.
+
+If a third-party platform shows payments, subscriptions, store prompts, or unrelated charges, those are governed by that third party and not by the Author unless explicitly stated otherwise in writing.
+
+## 3. Device Permissions and Local Operation
+
+Depending on the platform, operating system, browser, or package format, GyroMouse may request or require technical permissions in order to function, such as motion-sensor access, local input control, or browser-extension permissions.
+
+Those permissions are handled by your device, browser, or operating-system environment.
+
+Users are responsible for reviewing permission prompts, extension permissions, platform warnings, and device settings before installation or use.
+
+## 4. No Guarantee of Zero Data Exposure Outside Your Environment
+
+The Author's intent is that GyroMouse itself does not send personal data to the Author.
+
+However, the Author cannot guarantee the behavior, logging, network activity, diagnostics, crash reporting, sync services, or security posture of third-party operating systems, browsers, app stores, antivirus products, device manufacturers, or other software present on your system.
+
+Any such third-party processing is governed by the privacy terms of those third parties.
+
+## 5. Children
+
+GyroMouse is not specifically directed to children.
+
+No intentional collection of children's personal data by the Author is intended through GyroMouse.
+
+## 6. Security
+
+Because GyroMouse is provided in packaged software form and runs in user-controlled environments, users are responsible for their own device security, updates, backups, permission management, and safe installation practices.
+
+## 7. Changes
+
+This privacy notice may be updated if the functionality or distribution model of GyroMouse changes.
+
+The version distributed with the release should be considered the current notice for that release unless the Author states otherwise.
+
+## 8. Contact
+
+For privacy-related questions, use the contact details or repository contact method provided by the Author together with the distribution of GyroMouse.
