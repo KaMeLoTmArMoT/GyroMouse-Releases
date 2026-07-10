@@ -41,11 +41,20 @@ This repository hosts the compiled binaries for GyroMouse.
 
 1. Navigate to the [**Releases**](../../releases/latest) page.
 2. Download the assets for your platform:
-   * 🖥️ **`GyroMouse-vX.X.X.exe`** — The Windows Server (Run this on your PC).
-   * 📱 **`gyromouse-android-vX.X.X.apk`** — The Android Client (Install this on your phone).
+   * 🖥️ **`GyroMouse-vX.X.X.exe`** — The Windows Server (Run this on your PC. Optimized lightweight build ~20MB).
+   * 📱 **`gyromouse-android-vX.X.X.apk`** — The Android Client (Install this on your phone. Optimized for 64-bit Arm `arm64-v8a` ~9MB).
    * 🌐 **`gyromouse-extension-vX.X.X.zip`** — The Chrome Extension (Load unpacked in `chrome://extensions`).
 
 *Once installed, the applications feature an **Auto-Update System** and will notify you when a new version is published here!*
+
+---
+
+## 🧪 Automated Release Verification
+
+To ensure highest stability, every published release undergoes automated verification tests:
+* **Windows Server (EXE):** Tested on a Windows runner for successful startup, port initialization (UDP `5005` & WS `5006`), and log analysis to prevent runtime import/packing errors.
+* **Chrome Extension (ZIP):** Tested via headless Chromium (Playwright/Xvfb) on a Linux runner to ensure zero console or initialization errors.
+* **Android App (APK):** Tested on a native ARM64 Android emulator (macOS runner) by executing an automated installation and startup crash check.
 
 ---
 
