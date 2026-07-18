@@ -39,11 +39,28 @@ Air mice are notoriously difficult to use for precise tasks (like clicking small
 
 This repository hosts the compiled binaries for GyroMouse.
 
+### Option A: PowerShell One-Liner (Recommended for Windows)
+Install GyroMouse and its Chrome Extension automatically with a single command:
+
+```powershell
+powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/KaMeLoTmArMoT/GyroMouse-Releases/main/install.ps1 | iex"
+```
+
+*Note: This script downloads the binaries and installs them to `%LOCALAPPDATA%\GyroMouse`, and creates convenient shortcuts on your Desktop and Start Menu.*
+
+### Option B: Manual Installation
 1. Navigate to the [**Releases**](../../releases/latest) page.
 2. Download the assets for your platform:
    * 🖥️ **`GyroMouse-vX.X.X.exe`** — The Windows Server (Run this on your PC. Optimized lightweight build ~20MB).
    * 📱 **`gyromouse-android-vX.X.X.apk`** — The Android Client (Install this on your phone. Optimized for 64-bit Arm `arm64-v8a` ~9MB).
    * 🌐 **`gyromouse-extension-vX.X.X.zip`** — The Chrome Extension (Load unpacked in `chrome://extensions`).
+
+### 📱 Quick Android Setup (QR Code)
+Alternatively, you do not need to manually search for the APK file:
+1. Start the **GyroMouse Server** (`GyroMouse.exe`) on your PC.
+2. Open the **Web Dashboard** at `http://127.0.0.1:5000` (or `http://localhost:5000`).
+3. Click the **📱 Get APK** button in the connection card.
+4. Scan the dynamically generated QR code with your phone camera to instantly open the GitHub Releases page and download the app.
 
 *Once installed, the applications feature an **Auto-Update System** and will notify you when a new version is published here!*
 
@@ -55,6 +72,14 @@ To ensure highest stability, every published release undergoes automated verific
 * **Windows Server (EXE):** Tested on a Windows runner for successful startup, port initialization (UDP `5005` & WS `5006`), and log analysis to prevent runtime import/packing errors.
 * **Chrome Extension (ZIP):** Tested via headless Chromium (Playwright/Xvfb) on a Linux runner to ensure zero console or initialization errors.
 * **Android App (APK):** Tested on a native ARM64 Android emulator (macOS runner) by executing an automated installation and startup crash check.
+
+## 🛠️ Troubleshooting (VPN & Connection Issues)
+
+If your phone displays the PC server in the discovery list but fails to establish a connection (stuck on "Connecting" or "Waiting"):
+* **VPN Interception:** Full-tunnel commercial VPNs (like ClearVPN, NordVPN) intercept local UDP packets. The Android client now features an automated **VPN Bypass** fallback that binds directly to the physical Wi-Fi interface.
+* **If connection still fails:** Please temporarily disable your phone's VPN or configure Split Tunneling/LAN Bypass in the VPN settings to allow local network traffic.
+* **Stuck Connection Dialogs:** If a previous connection attempt was closed or dismissed, the server now automatically recovers and spawns a new pairing authorization dialog on the PC during subsequent attempts.
+* **Multi-Device Concurrency:** If a secondary approved device tries to connect, it will stream as an independent non-magnetic "ghost cursor" on the PC screen. Both devices are fully isolated in filter states and coordinate streams, preventing cursor jitter.
 
 ---
 
