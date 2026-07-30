@@ -1,96 +1,56 @@
-<div align="center">
-  <h1 align="center">GyroMouse 🎯🖱️</h1>
+# GyroMouse Release Distribution Repository 🎯🖱️
 
-  <p align="center">
-    <b>A next-generation smart air-mouse application with revolutionary Magnetic UI.</b><br>
-    Use your Android smartphone's gyroscope to control your PC cursor with surgical precision, enhanced by virtual gravity wells that intelligently snap your cursor to clickable elements.
-    <br /><br />
-    <a href="https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/releases/latest">⬇️ Download Latest Release</a>
-    ·
-    <a href="https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/issues">🐛 Report Bug</a>
-    ·
-    <a href="https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/issues">💡 Request Feature</a>
-  </p>
-</div>
+Official release distribution channel for GyroMouse binaries, installers, and release verification workflows.
 
 ---
 
-## About The Project
+## ⬇️ Download & Installation
 
-Air mice are notoriously difficult to use for precise tasks (like clicking small buttons) due to the natural shaking of human hands.
+### Option A: PowerShell Automatic Installer (Windows Recommended)
 
-**GyroMouse** solves this by building a real-time spatial map of your screen's UI elements and applying a virtual "gravity well" around them. When your cursor gets close to a button, link, or tab, it physically gets "pulled" towards its center. It achieves this by combining high-speed native Windows scanning (via UIAutomation), web DOM scraping (via Chrome Extension), and a heavily optimized Rust physics engine.
-
-### 🌟 The "Magnetic UI" Experience
-* **Native Windows Support:** Effortlessly snaps to File Explorer tabs, Start Menu items, Taskbar icons, and Electron apps.
-* **Web Integration:** The dedicated Chrome Extension pierces through Shadow DOMs and IFrames, grabbing exact button coordinates from any website.
-
-## Key Features
-
-* 📱 **Pointer Mode:** Absolute spatial tracking (Point-and-click) using the phone's gyroscope.
-* ⚡ **Zero-Latency Architecture:** Asynchronous UDP networking combined with O(N) SIMD Rust calculations ensures instantaneous cursor response.
-* ⌨️ **Safe Sync Keyboard:** Type from your phone! The PC server streams focused text fields directly to your Android device from both native Windows apps and Web browsers, instantly synchronized to avoid race conditions.
-* 🎛️ **Web Dashboard:** A clean, local web interface (`http://127.0.0.1:5000`) that lets you configure your GyroMouse settings, view magnetic snap strengths, and monitor connection statuses in real-time.
-* 🔍 **Auto-Discovery:** Zero-configuration setup. The Android app automatically detects your PC server over the local Wi-Fi via mDNS/ZeroConf.
-
----
-
-## 🚀 Downloading & Installation
-
-This repository hosts the compiled binaries for GyroMouse.
-
-### Option A: PowerShell One-Liner (Recommended for Windows)
-Install GyroMouse and its Chrome Extension automatically with a single command:
+Run the one-liner installer in PowerShell to auto-download and install GyroMouse:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/KaMeLoTmArMoT/GyroMouse-Releases/main/install.ps1 | iex"
 ```
 
-*Note: This script downloads the binaries and installs them to `%LOCALAPPDATA%\GyroMouse`, and creates convenient shortcuts on your Desktop and Start Menu.*
+*Installs binaries to `%LOCALAPPDATA%\GyroMouse` and creates Desktop and Start Menu shortcuts.*
 
-### Option B: Manual Installation
-1. Navigate to the [**Releases**](../../releases/latest) page.
-2. Download the assets for your platform:
-   * 🖥️ **`GyroMouse-vX.X.X.exe`** — The Windows Server (Run this on your PC. Optimized lightweight build ~20MB).
-   * 📱 **`gyromouse-android-vX.X.X.apk`** — The Android Client (Install this on your phone. Optimized for 64-bit Arm `arm64-v8a` ~9MB).
-   * 🌐 **`gyromouse-extension-vX.X.X.zip`** — The Chrome Extension (Load unpacked in `chrome://extensions`).
+### Option B: Manual Assets
 
-### 📱 Quick Android Setup (QR Code)
-Alternatively, you do not need to manually search for the APK file:
-1. Start the **GyroMouse Server** (`GyroMouse.exe`) on your PC.
-2. Open the **Web Dashboard** at `http://127.0.0.1:5000` (or `http://localhost:5000`).
-3. Click the **📱 Get APK** button in the connection card.
-4. Scan the dynamically generated QR code with your phone camera to instantly open the GitHub Releases page and download the app.
+Download platform binaries from the [**Releases**](https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/releases/latest) page:
 
-*Once installed, the applications feature an **Auto-Update System** and will notify you when a new version is published here!*
+- 🖥️ **`GyroMouse-vX.X.X.exe`** — Windows Server (standalone EXE ~20MB).
+- 📱 **`gyromouse-android-vX.X.X.apk`** — Android Client (ARM64 `arm64-v8a` ~9MB).
+- 🌐 **`gyromouse-extension-vX.X.X.zip`** — Chrome Extension (load unpacked in `chrome://extensions`).
+
+### Option C: Quick QR Code APK Download
+
+1. Launch `GyroMouse.exe` on your PC.
+2. Open Web Dashboard (`http://127.0.0.1:5000`).
+3. Scan the Aztec/QR code on screen with your phone camera to open GitHub Releases directly.
 
 ---
 
-## 🧪 Automated Release Verification
+## 🌟 Latest Release Highlights (v0.17.0)
 
-To ensure highest stability, every published release undergoes automated verification tests:
-* **Windows Server (EXE):** Tested on a Windows runner for successful startup, port initialization (UDP `5005` & WS `5006`), and log analysis to prevent runtime import/packing errors.
-* **Chrome Extension (ZIP):** Tested via headless Chromium (Playwright/Xvfb) on a Linux runner to ensure zero console or initialization errors.
-* **Android App (APK):** Tested on a native ARM64 Android emulator (macOS runner) by executing an automated installation and startup crash check.
-
-## 🛠️ Troubleshooting (VPN & Connection Issues)
-
-If your phone displays the PC server in the discovery list but fails to establish a connection (stuck on "Connecting" or "Waiting"):
-* **VPN Interception:** Full-tunnel commercial VPNs (like ClearVPN, NordVPN) intercept local UDP packets. The Android client now features an automated **VPN Bypass** fallback that binds directly to the physical Wi-Fi interface.
-* **If connection still fails:** Please temporarily disable your phone's VPN or configure Split Tunneling/LAN Bypass in the VPN settings to allow local network traffic.
-* **Stuck Connection Dialogs:** If a previous connection attempt was closed or dismissed, the server now automatically recovers and spawns a new pairing authorization dialog on the PC during subsequent attempts.
-* **Multi-Device Concurrency:** If a secondary approved device tries to connect, it will stream as an independent non-magnetic "ghost cursor" on the PC screen. Both devices are fully isolated in filter states and coordinate streams, preventing cursor jitter.
+- 🎮 **2-Player Co-Op & Solo Tilt Modes**: Play together in 2-Player Co-Op or Solo tilt control modes with smooth role switching.
+- 🔄 **Reliable Auto-Updates**: Seamless background updates that automatically close old instances and replace files safely.
+- 🛡️ **Enhanced Crash Protection**: Solidified Windows UI element scanning to prevent unexpected crashes during video playback or dynamic app usage.
+- 🚀 **Smooth Windows Autostart**: Clean startup handling when launching automatically with Windows.
 
 ---
 
-## 🔐 Source Code & Privacy
+## 🧪 Automated CI Release Verification
 
-The source code for GyroMouse is currently **private and closed-source**. This repository is maintained strictly as an official distribution channel for release assets and issue tracking.
+Every release undergoes automated validation:
+- **Windows Server (EXE):** Verified on a Windows runner for startup, port initialization (UDP 5005, WS 5006), and log clean state.
+- **Chrome Extension (ZIP):** Verified via headless Chromium on a Linux runner for zero initialization or console errors.
+- **Android App (APK):** Verified on an ARM64 emulator runner for clean APK installation and launch state.
 
-**Privacy:** GyroMouse operates entirely locally over your home Wi-Fi. It does not collect telemetry, perform user tracking, or rely on external cloud accounts. Please review the [**PRIVACY**](PRIVACY.md) notice for full details.
+---
 
-## ⚠️ License
+## 🔐 Legal & Privacy Notices
 
-The software provided in these releases is proprietary. Reverse engineering, modification, and unauthorized redistribution are strictly prohibited.
-
-Please refer to the [**LICENSE**](LICENSE.md) file for the full End User License Agreement (EULA).
+- **Privacy Policy:** Read [`PRIVACY.md`](file:///g:/programming/GyroMouse/release_repo/PRIVACY.md). GyroMouse operates entirely locally over Wi-Fi without cloud telemetry.
+- **License Agreement:** Read [`LICENSE.md`](file:///g:/programming/GyroMouse/release_repo/LICENSE.md). GyroMouse distribution binaries are subject to the project EULA.
