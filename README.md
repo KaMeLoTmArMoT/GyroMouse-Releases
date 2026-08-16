@@ -8,7 +8,15 @@ Official release distribution channel for GyroMouse binaries, installers, and re
 
 ### Option A: PowerShell Automatic Installer (Windows Recommended)
 
-Run the one-liner installer in PowerShell to auto-download and install GyroMouse:
+#### Method 1: Safe Installer (Recommended to prevent Windows Defender false positives)
+
+If Windows Defender flags one-liner script execution, run this safe downloader command:
+
+```powershell
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/KaMeLoTmArMoT/GyroMouse-Releases/main/install.ps1" -OutFile "$env:TEMP\install.ps1"; powershell -ExecutionPolicy Bypass -File "$env:TEMP\install.ps1"; Remove-Item "$env:TEMP\install.ps1"
+```
+
+#### Method 2: Direct One-Liner
 
 ```powershell
 powershell -ExecutionPolicy Bypass -Command "irm https://raw.githubusercontent.com/KaMeLoTmArMoT/GyroMouse-Releases/main/install.ps1 | iex"
@@ -32,12 +40,13 @@ Download platform binaries from the [**Releases**](https://github.com/KaMeLoTmAr
 
 ---
 
-## 🌟 Latest Release Highlights (v0.17.0)
+## 🌟 Latest Release Highlights (v0.18.0)
 
-- 🎮 **2-Player Co-Op & Solo Tilt Modes**: Play together in 2-Player Co-Op or Solo tilt control modes with smooth role switching.
-- 🔄 **Reliable Auto-Updates**: Seamless background updates that automatically close old instances and replace files safely.
-- 🛡️ **Enhanced Crash Protection**: Solidified Windows UI element scanning to prevent unexpected crashes during video playback or dynamic app usage.
-- 🚀 **Smooth Windows Autostart**: Clean startup handling when launching automatically with Windows.
+- ⌨️ **Smart Virtual Keyboard Layout Sync**: Dynamically syncs focused HTML input types (`number`, `email`, `tel`, `url`, `password`) over WebSocket and UDP to auto-switch Android soft keyboard layouts.
+- 📜 **Sub-pixel Fractional Accumulators**: Silky-smooth scrolling and zoom precision with fractional pixel remainder accumulation.
+- 🤏 **Mutual-Exclusion Gesture Locking**: Clean isolation between 2-finger scrolling and pinch-to-zoom gestures without cross-talk.
+- 📡 **Automated Wi-Fi Reconnect & Telemetry**: Seamless network transition recovery on Android and real-time latency/telemetry profiler.
+- ⚡ **Modular Architecture**: Comprehensive God-file refactoring across Python, Rust, Android, and Web components.
 
 ---
 
