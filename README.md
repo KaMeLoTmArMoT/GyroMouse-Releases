@@ -40,13 +40,13 @@ Download platform binaries from the [**Releases**](https://github.com/KaMeLoTmAr
 
 ---
 
-## 🌟 Latest Release Highlights (v0.18.0)
+## 🌟 Latest Release Highlights (v0.19.0)
 
-- ⌨️ **Smart Virtual Keyboard Layout Sync**: Dynamically syncs focused HTML input types (`number`, `email`, `tel`, `url`, `password`) over WebSocket and UDP to auto-switch Android soft keyboard layouts.
-- 📜 **Sub-pixel Fractional Accumulators**: Silky-smooth scrolling and zoom precision with fractional pixel remainder accumulation.
-- 🤏 **Mutual-Exclusion Gesture Locking**: Clean isolation between 2-finger scrolling and pinch-to-zoom gestures without cross-talk.
-- 📡 **Automated Wi-Fi Reconnect & Telemetry**: Seamless network transition recovery on Android and real-time latency/telemetry profiler.
-- ⚡ **Modular Architecture**: Comprehensive God-file refactoring across Python, Rust, Android, and Web components.
+- 📱 **Background Media Remote & Lock Screen Controls**: Low-power Android foreground service with native MediaSession and lock screen playback controls (⏪ 15s, ⏯️, ⏩ 15s, Volume +/-) with zero sensor drain while minimized.
+- 🎙️ **Smart Voice Typing & 3-Finger Pinch Gestures**: Smart TV-style voice dictation with live text/cursor synchronization, and iOS-style 3-finger pinch in/out for instant Copy & Paste macros.
+- 🔄 **Live Updater with Rollback Circuit Breaker**: Real-time download progress bar and percentage, manual check triggers from system tray/web dashboard, and automatic 7-day 3-rollback stability circuit breaker.
+- 🛡️ **Out-of-Process Worker Crash Isolation**: Out-of-process COM UIAutomation and text extraction worker isolating C-level access violations (`0xC0000005`), combined with debounced text sync and sanitized crash diagnostics (`/api/report`).
+- ⚡ **Share Discovery & High-Performance Web UI**: Multi-device mDNS auto-detection, sleep/wake recovery keep-alive, and esbuild-bundled GZip-compressed web assets.
 
 ---
 
