@@ -1,0 +1,21 @@
+{
+  "updated_at": "2026-09-11T00:00:00Z",
+  "latest_release_tag": "v0.19.0",
+  "components": {
+    "server": {
+      "version": "v0.19.0",
+      "filename": "GyroMouse-v0.19.0.exe",
+      "url": "https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/releases/download/v0.19.0/GyroMouse-v0.19.0.exe"
+    },
+    "extension": {
+      "version": "v0.19.0",
+      "filename": "gyromouse-extension-v0.19.0.zip",
+      "url": "https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/releases/download/v0.19.0/gyromouse-extension-v0.19.0.zip"
+    },
+    "android": {
+      "version": "v0.19.0",
+      "filename": "gyromouse-android-v0.19.0.apk",
+      "url": "https://github.com/KaMeLoTmArMoT/GyroMouse-Releases/releases/download/v0.19.0/gyromouse-android-v0.19.0.apk"
+    }
+  }
+}

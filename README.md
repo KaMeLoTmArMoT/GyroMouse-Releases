@@ -31,6 +31,7 @@ Download platform binaries from the [**Releases**](https://github.com/KaMeLoTmAr
 - 🖥️ **`GyroMouse-vX.X.X.exe`** — Windows Server (standalone EXE ~20MB).
 - 📱 **`gyromouse-android-vX.X.X.apk`** — Android Client (ARM64 `arm64-v8a` ~9MB).
 - 🌐 **`gyromouse-extension-vX.X.X.zip`** — Chrome Extension (load unpacked in `chrome://extensions`).
+- 📋 **`latest-versions.json`** — Machine-readable release metadata manifest for automated downloads and version resolution across sparse releases.
 
 ### Option C: Quick QR Code APK Download
 
@@ -40,13 +41,12 @@ Download platform binaries from the [**Releases**](https://github.com/KaMeLoTmAr
 
 ---
 
-## 🌟 Latest Release Highlights (v0.19.0)
+## 🌟 Latest Release Highlights (v0.20.0)
 
-- 📱 **Background Media Remote & Lock Screen Controls**: Low-power Android foreground service with native MediaSession and lock screen playback controls (⏪ 15s, ⏯️, ⏩ 15s, Volume +/-) with zero sensor drain while minimized.
-- 🎙️ **Smart Voice Typing & 3-Finger Pinch Gestures**: Smart TV-style voice dictation with live text/cursor synchronization, and iOS-style 3-finger pinch in/out for instant Copy & Paste macros.
-- 🔄 **Live Updater with Rollback Circuit Breaker**: Real-time download progress bar and percentage, manual check triggers from system tray/web dashboard, and automatic 7-day 3-rollback stability circuit breaker.
-- 🛡️ **Out-of-Process Worker Crash Isolation**: Out-of-process COM UIAutomation and text extraction worker isolating C-level access violations (`0xC0000005`), combined with debounced text sync and sanitized crash diagnostics (`/api/report`).
-- ⚡ **Share Discovery & High-Performance Web UI**: Multi-device mDNS auto-detection, sleep/wake recovery keep-alive, and esbuild-bundled GZip-compressed web assets.
+- 🦀 **Native Win32 Subsystem in Rust**: Purged legacy Python `pyautogui`, `pywin32`, and `uiautomation` dependencies. Replaced with ultra-low-latency native Win32 keyboard/mouse injection, display bounds, and system audio/power management in `rust_core`.
+- 🎯 **Native Spatial UIAutomation & Raycaster**: Custom Rust window occlusion raycasting and spatial bounding box pruning to eliminate phantom snap targets and prevent UI thread hangs.
+- 📱 **Redesigned Android Touchpad UI**: Modernized Jetpack Compose touchpad surface with configurable edge scroll speed (default 0.3x) for silky-smooth continuous panning.
+- 🚀 **Streamlined Releases & Zero-Waste CI**: Optimized GitHub Actions distribution targeting `GyroMouse-Releases` with minimal storage footprint and updated Copilot AI release notes.
 
 ---
 

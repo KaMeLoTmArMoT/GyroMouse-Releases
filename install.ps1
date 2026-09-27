@@ -1,4 +1,4 @@
-# ═══════════════════════════════════════════════════════════════
+﻿# ═══════════════════════════════════════════════════════════════
 #  GyroMouse Windows Installer Script
 #  Installs the latest server EXE and Chrome Extension zip.
 # ═══════════════════════════════════════════════════════════════
@@ -6,33 +6,69 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "🎯 Installing GyroMouse..." -ForegroundColor Cyan
 
-# 1. Fetch Latest Release
-$apiUrl = "https://api.github.com/repos/KaMeLoTmArMoT/GyroMouse-Releases/releases/latest"
-Write-Host "🔍 Fetching release metadata from GitHub..." -ForegroundColor Gray
+# 1. Fetch Latest Release Assets & Manifest
+$manifestUrl = "https://raw.githubusercontent.com/KaMeLoTmArMoT/GyroMouse-Releases/main/latest-versions.json"
+$apiUrl = "https://api.github.com/repos/KaMeLoTmArMoT/GyroMouse-Releases/releases"
+Write-Host "🔍 Fetching release metadata..." -ForegroundColor Gray
 
+# Set SecurityProtocol to TLS 1.2/1.3 for download success
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
+
+$exeUrl = $null
+$zipUrl = $null
+$version = "latest"
+
+# Strategy A: Try downloading latest-versions.json (no rate limits, instant)
 try {
-    # Set SecurityProtocol to TLS 1.2/1.3 for download success
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 -bor [Net.SecurityProtocolType]::Tls13
-    $release = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing
+    $manifest = Invoke-RestMethod -Uri $manifestUrl -UseBasicParsing -TimeoutSec 10
+    if ($manifest.components.server.url -and $manifest.components.extension.url) {
+        $exeUrl = $manifest.components.server.url
+        $zipUrl = $manifest.components.extension.url
+        $version = $manifest.components.server.version
+        Write-Host "⚡ Resolved download URLs via version manifest ($version)." -ForegroundColor Gray
+    }
 } catch {
-    Write-Error "Failed to fetch latest release metadata from GitHub: $_"
+    # Non-critical, fallback to GitHub API
+}
+
+# Strategy B: Fallback to GitHub Releases API (traverse releases to support sparse releases)
+if (!$exeUrl -or !$zipUrl) {
+    try {
+        $releases = Invoke-RestMethod -Uri $apiUrl -UseBasicParsing -TimeoutSec 15
+        if ($releases -and $releases.Count -gt 0) {
+            foreach ($rel in $releases) {
+                if (!$exeUrl) {
+                    $foundExe = $rel.assets | Where-Object { $_.name -like "*.exe" } | Select-Object -First 1
+                    if ($foundExe) {
+                        $exeUrl = $foundExe.browser_download_url
+                        if ($version -eq "latest") { $version = $rel.tag_name }
+                    }
+                }
+                if (!$zipUrl) {
+                    $foundZip = $rel.assets | Where-Object { $_.name -like "*.zip" } | Select-Object -First 1
+                    if ($foundZip) {
+                        $zipUrl = $foundZip.browser_download_url
+                    }
+                }
+                if ($exeUrl -and $zipUrl) { break }
+            }
+        }
+    } catch {
+        Write-Error "Failed to fetch release metadata from GitHub: $_"
+        exit 1
+    }
+}
+
+if (!$exeUrl) {
+    Write-Error "Could not find a server (.exe) asset across recent releases."
+    exit 1
+}
+if (!$zipUrl) {
+    Write-Error "Could not find a Chrome Extension (.zip) asset across recent releases."
     exit 1
 }
 
-$exeAsset = $release.assets | Where-Object { $_.name -like "*.exe" } | Select-Object -First 1
-$zipAsset = $release.assets | Where-Object { $_.name -like "*.zip" } | Select-Object -First 1
-
-if (!$exeAsset) {
-    Write-Error "Could not find a server (.exe) asset in the latest release."
-    exit 1
-}
-if (!$zipAsset) {
-    Write-Error "Could not find a Chrome Extension (.zip) asset in the latest release."
-    exit 1
-}
-
-$version = $release.tag_name
-Write-Host "📦 Found latest version: $version" -ForegroundColor Green
+Write-Host "📦 Found latest server version: $version" -ForegroundColor Green
 
 # 2. Setup Directories
 $installDir = Join-Path $env:LOCALAPPDATA "GyroMouse"
@@ -54,7 +90,7 @@ try {
 } catch {}
 
 try {
-    Invoke-WebRequest -Uri $exeAsset.browser_download_url -OutFile $exePath -UseBasicParsing
+    Invoke-WebRequest -Uri $exeUrl -OutFile $exePath -UseBasicParsing
 } catch {
     Write-Error "Failed to download Server EXE: $_"
     exit 1
@@ -63,7 +99,7 @@ try {
 # 4. Download and Extract Chrome Extension
 Write-Host "⬇️ Downloading Chrome Extension..." -ForegroundColor Gray
 try {
-    Invoke-WebRequest -Uri $zipAsset.browser_download_url -OutFile $zipPath -UseBasicParsing
+    Invoke-WebRequest -Uri $zipUrl -OutFile $zipPath -UseBasicParsing
 } catch {
     Write-Error "Failed to download Chrome Extension: $_"
     exit 1
