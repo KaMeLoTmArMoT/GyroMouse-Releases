@@ -41,7 +41,17 @@ Download platform binaries from the [**Releases**](https://github.com/KaMeLoTmAr
 
 ---
 
-## 🌟 Latest Release Highlights (v0.20.0)
+## 🌟 Latest Release Highlights (v0.21.0)
+
+- 🖥️ **Multi-Monitor Display Topology**: Virtual desktop coordinate clamping and UIAutomation target scraping across secondary displays with negative coordinates and mixed layouts.
+- 🔒 **Active Session IP Pinning**: Zero-overhead source IP binding during active sessions to reject spoofed UDP packets on shared networks.
+- 📱 **Customizable Android Widgets**: Fully user-configurable buttons and compact narrow layouts for Media and PC Controls home screen widgets.
+- 🖱️ **Sub-Notch Smooth Scrolling**: Fractional wheel accumulators eliminate touch gesture stutter and preserve delicate scroll steps.
+- ⚡ **2-Wave Parallel Build & Test Orchestrator**: High-speed parallel build and verification runners across Python, Rust, Android, and Extension.
+
+---
+
+## 📜 Prior Release Highlights (v0.20.0)
 
 - 🦀 **Native Win32 Subsystem in Rust**: Purged legacy Python `pyautogui`, `pywin32`, and `uiautomation` dependencies. Replaced with ultra-low-latency native Win32 keyboard/mouse injection, display bounds, and system audio/power management in `rust_core`.
 - 🎯 **Native Spatial UIAutomation & Raycaster**: Custom Rust window occlusion raycasting and spatial bounding box pruning to eliminate phantom snap targets and prevent UI thread hangs.
